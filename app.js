@@ -3,13 +3,14 @@ require('dotenv').config();
 const express = require('express');
 const ejs = require('ejs');
 const expressLayouts = require("express-ejs-layouts");
-app.use(expressLayouts);
-app.set("view engine", "ejs");
+
 
 // require spotify-web-api-node package here:
 const SpotifyWebApi = require("spotify-web-api-node");
 
 const app = express();
+app.use(expressLayouts);
+app.set("view engine", "ejs");
 
 app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
@@ -27,5 +28,9 @@ spotifyApi
   .catch(error => console.log('Something went wrong when retrieving an access token', error));
 
 // Our routes go here:
+
+app.get("/", (req, res) => {
+  res.render("home");
+});
 
 app.listen(3000, () => console.log('My Spotify project running on port 3000 🎧 🥁 🎸 🔊'));
