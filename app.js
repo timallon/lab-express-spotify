@@ -2,13 +2,15 @@ require('dotenv').config();
 
 const express = require('express');
 const ejs = require('ejs');
+const expressLayouts = require("express-ejs-layouts");
+app.use(expressLayouts);
+app.set("view engine", "ejs");
 
 // require spotify-web-api-node package here:
 const SpotifyWebApi = require("spotify-web-api-node");
 
 const app = express();
 
-app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
 
